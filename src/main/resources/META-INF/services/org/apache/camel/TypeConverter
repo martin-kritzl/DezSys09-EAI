@@ -15,4 +15,4 @@
 # limitations under the License.
 #
 
-CustomerTransformer
+org.apache.camel.example.etl.CustomerTransformer
