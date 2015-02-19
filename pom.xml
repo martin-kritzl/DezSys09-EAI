@@ -165,7 +165,7 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <configuration>
-          <mainClass>main.at.erceg_kritzl.dezsys09.Main</mainClass>
+          <mainClass>org.apache.camel.example.etl.Main</mainClass>
           <includePluginDependencies>false</includePluginDependencies>
         </configuration>
       </plugin>

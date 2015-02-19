@@ -16,16 +16,26 @@
  */
 package org.apache.camel.example.etl;
 
-import junit.framework.TestCase;
-import org.apache.camel.spring.Main;
+import org.apache.camel.Exchange;
+import org.apache.camel.spring.SpringRouteBuilder;
+
+import static org.apache.camel.language.juel.JuelExpression.el;
 
 /**
  * @version 
  */
-public class IntegrationTest extends TestCase {
+// START SNIPPET: example
+public class EtlRoutes extends SpringRouteBuilder {
+    public void configure() throws Exception {
 
-    public void testEtlRoutes() throws Exception {
-        // let's boot up the Spring application context for 5 seconds to check that it works OK
-        Main.main("-duration", "5s", "-o", "target/site/cameldoc");
+        from("file:src/data?noop=true")
+            .convertBodyTo(PersonDocument.class)
+            .to("jpa:org.apache.camel.example.etl.CustomerEntity");
+
+        // the following will dump the database to files
+        from("jpa:org.apache.camel.example.etl.CustomerEntity?consumer.initialDelay=3000&delay=3000&consumeDelete=false&consumeLockEntity=false")
+            .setHeader(Exchange.FILE_NAME, el("${in.body.userName}.xml"))
+            .to("file:target/customers");
     }
 }
+// END SNIPPET: example

@@ -16,16 +16,13 @@
  */
 package org.apache.camel.example.etl;
 
-import junit.framework.TestCase;
-import org.apache.camel.spring.Main;
-
 /**
+ * A command line tool to run this example
+ *
  * @version 
  */
-public class IntegrationTest extends TestCase {
-
-    public void testEtlRoutes() throws Exception {
-        // let's boot up the Spring application context for 5 seconds to check that it works OK
-        Main.main("-duration", "5s", "-o", "target/site/cameldoc");
+public class Main extends org.apache.camel.spring.Main {
+    public static void main(String... args) throws Exception {
+        new Main().run(args);
     }
 }
