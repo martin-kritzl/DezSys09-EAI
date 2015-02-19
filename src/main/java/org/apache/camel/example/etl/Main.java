@@ -17,11 +17,20 @@
 package org.apache.camel.example.etl;
 
 /**
- * A command line tool to run this example
+ * Verwendet den Mechanismus von Camel, um das Programm zu starten.
  *
- * @version 
+ * @author https://github.com/apache/camel/tree/master/examples/camel-example-etl
+ * @author Erceg <serceg@student.tgm.ac.at>, Kritzl <mkritzl@student.tgm.ac.at> (Kommentare)
+ * @version 20150219
  */
 public class Main extends org.apache.camel.spring.Main {
+    /**
+     * Verwendet den Mechanismus von Camel, um das Programm zu starten.
+     *
+     * @param args Argumente zum Start des Programms
+     * @throws Exception Wenn das Programm nicht erfolgreich gestartet werden konnte,
+     * wird eine Exception geworfen.
+     */
     public static void main(String... args) throws Exception {
         new Main().run(args);
     }

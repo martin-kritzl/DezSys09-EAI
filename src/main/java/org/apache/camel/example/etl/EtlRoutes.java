@@ -22,20 +22,34 @@ import org.apache.camel.spring.SpringRouteBuilder;
 import static org.apache.camel.language.juel.JuelExpression.el;
 
 /**
- * @version 
+ * Definiert, wie die Personendaten aus dem XML-File in die Datenbank kopiert und
+ * wiederum im XML-File der Kunden abglegt werden.
+ *
+ * @author https://github.com/apache/camel/tree/master/examples/camel-example-etl
+ * @author Erceg <serceg@student.tgm.ac.at>, Kritzl <mkritzl@student.tgm.ac.at> (Kommentare)
+ * @version 20150219
  */
-// START SNIPPET: example
 public class EtlRoutes extends SpringRouteBuilder {
+    /**
+     * Definiert, wie die Personendaten aus dem XML-File in die Datenbank kopiert und
+     * wiederum im XML-File der Kunden abglegt werden.
+     */
     public void configure() throws Exception {
+
+        /*
+         * Holt sich aus dem Source-Ordner die vorhandenen XML-Files, transferiert diese
+         * in das "PersonDocument" und legt diese in der Datenbank ab.
+         */
 
         from("file:src/data?noop=true")
             .convertBodyTo(PersonDocument.class)
             .to("jpa:org.apache.camel.example.etl.CustomerEntity");
 
-        // the following will dump the database to files
+        /*
+         * Holt sich aus der Datenbank die Einträge der Kunden und schreibt diese in neue XML-Files
+         */
         from("jpa:org.apache.camel.example.etl.CustomerEntity?consumer.initialDelay=3000&delay=3000&consumeDelete=false&consumeLockEntity=false")
             .setHeader(Exchange.FILE_NAME, el("${in.body.userName}.xml"))
             .to("file:target/customers");
     }
 }
-// END SNIPPET: example

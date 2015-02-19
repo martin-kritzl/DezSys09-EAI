@@ -1,13 +1,16 @@
 ----------------------------------------------------------------
-Thu Feb 19 14:12:03 CET 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-014b-a1f7-73c2-000003d011b0 
-on database directory E:\Dokumente\4AHITT\SYT\Dezentrale Systeme\DezSys09\target\derby with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
-Loaded from file:/C:/Users/Stipe/.m2/repository/org/apache/derby/derby/10.10.2.0/derby-10.10.2.0.jar
+Thu Feb 19 19:36:12 CET 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-014b-a320-3589-00001f021c60 
+on database directory C:\Users\Martin Kritzl\Schule\4AHITT\SYT\Dezentrale Systeme\Progamme\DezSys09-EAI\examples\camel-example-etl\target\derby with class loader java.net.URLClassLoader@5f3a14dc 
+Loaded from file:/C:/Users/Martin%20Kritzl/.m2/repository/org/apache/derby/derby/10.10.2.0/derby-10.10.2.0.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_20-b26
-user.dir=E:\Dokumente\4AHITT\SYT\Dezentrale Systeme\DezSys09
+user.dir=C:\Users\Martin Kritzl\Schule\4AHITT\SYT\Dezentrale Systeme\Progamme\DezSys09-EAI\examples\camel-example-etl
 os.name=Windows 8.1
 os.arch=amd64
 os.version=6.3
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Feb 19 19:36:59 CET 2015:
+Shutting down instance a816c00e-014b-a320-3589-00001f021c60 on database directory C:\Users\Martin Kritzl\Schule\4AHITT\SYT\Dezentrale Systeme\Progamme\DezSys09-EAI\examples\camel-example-etl\target\derby with class loader java.net.URLClassLoader@5f3a14dc 

@@ -26,17 +26,26 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * An example entity bean which can be marshalled to/from XML
- * 
- * @version 
+ * Ein Datensatz eines Kunden, der in ein XML geschrieben oder ausgelesen werden kann
+ *
+ * @author https://github.com/apache/camel/tree/master/examples/camel-example-etl
+ * @author Erceg <serceg@student.tgm.ac.at>, Kritzl <mkritzl@student.tgm.ac.at> (Kommentare)
+ * @version 20150219
  */
+
+//Name des Eintrags
 @Entity(name = "customer")
+//Root-Element in dem XML-File
 @XmlRootElement(name = "customer")
+//Spezifiziert, dass Felder serialisiert werden sollen
 @XmlAccessorType(XmlAccessType.FIELD)
+//Beschreibt, wie der Kunde anhand seines Namens aus der Datenbank ausgelesen werden kann
 @NamedQuery(name = "findCustomerByUsername", query = "SELECT c FROM customer c WHERE c.userName = :userName")
 public class CustomerEntity {
+    //Attribute des XML-Files
     @XmlAttribute
     private Long id;
+
     private String userName;
     private String firstName;
     private String surname;
@@ -45,6 +54,7 @@ public class CustomerEntity {
     private String zip;
     private String phone;
 
+    //Definition eine Id, dessen Wert automatisch generiert wird
     @Id
     @GeneratedValue
     public Long getId() {

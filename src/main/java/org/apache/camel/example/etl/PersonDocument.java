@@ -23,13 +23,23 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * @version 
+ * Ein Datensatz, der in ein XML geschrieben oder ausgelesen werden kann
+ *
+ * @author https://github.com/apache/camel/tree/master/examples/camel-example-etl
+ * @author Erceg <serceg@student.tgm.ac.at>, Kritzl <mkritzl@student.tgm.ac.at> (Kommentare)
+ * @version 20150219
  */
+
+//Root-Element in dem XML-File
 @XmlRootElement(name = "person")
+//Spezifiziert, dass Felder serialisiert werden sollen
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PersonDocument {
+    //Definiert ein Attribut des XML-Files
     @XmlAttribute
     private String user;
+
+    //Elemente des XML-Files
     @XmlElement
     private String firstName;
     @XmlElement

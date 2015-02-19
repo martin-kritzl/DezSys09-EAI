@@ -32,11 +32,12 @@ import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
 /**
- * A Message Transformer of an XML document to a Customer entity bean
- * 
- * @version 
+ * Die Informationen zu einer Person werden einem neu angelegten oder bestehendem Kunden aus der Datenbank zugewiesen.
+ *
+ * @author https://github.com/apache/camel/tree/master/examples/camel-example-etl
+ * @author Erceg <serceg@student.tgm.ac.at>, Kritzl <mkritzl@student.tgm.ac.at> (Kommentare)
+ * @version 20150219
  */
-// START SNIPPET: example
 @Converter
 public final class CustomerTransformer {
 
@@ -46,18 +47,26 @@ public final class CustomerTransformer {
     }
 
     /**
-     * A transformation method to convert a person document into a customer
-     * entity
+     * Die Informationen zu einer Person werden einem neu angelegten oder bestehendem Kunden aus der Datenbank zugewiesen.
+     * Dadurch ist eine Transformationen einer Person zu einem Kunden vollzogen worden.
+     *
+     * @param doc Beinhaltet Informationen zu einer bestimmten Person
+     * @param exchange Beinhaltet alle Metadaten zur Verbindung der Datenbank
+     * @return Den passenden Kunden zu der angegebenen Person
+     * @throws Exception
      */
     @Converter
     public static CustomerEntity toCustomer(PersonDocument doc, Exchange exchange) throws Exception {
+        //Aus dem "exchange" wird die Property entityManager geholt
         EntityManager entityManager = exchange.getProperty(JpaConstants.ENTITY_MANAGER, EntityManager.class);
+        //Aus dem "exchange" wird das TransactionTemplate geholt.
         TransactionTemplate transactionTemplate = exchange.getContext().getRegistry().lookupByNameAndType("transactionTemplate", TransactionTemplate.class);
 
         String user = doc.getUser();
+        //Suchen des Kunden in der Datenbank
         CustomerEntity customer = findCustomerByName(transactionTemplate, entityManager, user);
 
-        // let's convert information from the document into the entity bean
+        //Transferieren der Daten der Person zu dem Kunden.
         customer.setUserName(user);
         customer.setFirstName(doc.getFirstName());
         customer.setSurname(doc.getLastName());
@@ -68,18 +77,29 @@ public final class CustomerTransformer {
     }
 
     /**
-     * Finds a customer for the given username
+     * Findet anhand eines Usernamens aus der Datenbank den entsprechenden Eintrag. Sollte dieser nicht vorhanden sein,
+     * wird ein neuer Kunde mit diesem Namen angelegt.
+     *
+     * @param transactionTemplate Verbindung fuer Transaktionen mit der Datenbank
+     * @param entityManager Direkte Kommunikation mit der Datenbank
+     * @param userName Gesuchter Kundeneintrag mit diesem Namen
+     * @return Den gesuchten Kunden
+     * @throws Exception
      */
     private static CustomerEntity findCustomerByName(TransactionTemplate transactionTemplate, final EntityManager entityManager, final String userName) throws Exception {
+        //Fuehrt die Transaktion mit der Datenbank aus
         return transactionTemplate.execute(new TransactionCallback<CustomerEntity>() {
             public CustomerEntity doInTransaction(TransactionStatus status) {
                 entityManager.joinTransaction();
+                //Sucht aufgrund des im "CostumerEntity" angelegten SQL-Statements mit dem gegebenen Namen nach dem richtigen Eintrag in der Datenbank
                 List<CustomerEntity> list = entityManager.createNamedQuery("findCustomerByUsername", CustomerEntity.class).setParameter("userName", userName).getResultList();
                 CustomerEntity answer;
+                //Sollte ein angefragter Kunde nicht vorhanden sein, wird ein neuer Kunde mit diesem Namen erstellt.
                 if (list.isEmpty()) {
                     answer = new CustomerEntity();
                     answer.setUserName(userName);
                     LOG.info("Created a new CustomerEntity {} as no matching persisted entity found.", answer);
+                //Ansonsten wird der erste Eintrag zuruekgegeben.
                 } else {
                     answer = list.get(0);
                     LOG.info("Found a matching CustomerEntity {} having the userName {}.", answer, userName);
@@ -91,4 +111,3 @@ public final class CustomerTransformer {
     }
 
 }
-// END SNIPPET: example
