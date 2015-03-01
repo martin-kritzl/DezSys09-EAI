@@ -20,12 +20,21 @@ import junit.framework.TestCase;
 import org.apache.camel.spring.Main;
 
 /**
- * @version 
+ * 
+ * In dieser Testklasse wird das Gesamtsystem auf eine nicht fehlerhafte Ausfuehrung ueberprueft.
+ * 
+ * @author https://github.com/apache/camel/tree/master/examples/camel-example-etl
+ * @author Erceg (serceg@student.tgm.ac.at), Kritzl (mkritzl@student.tgm.ac.at) (Kommentare)
+ * @version 20150219
  */
 public class IntegrationTest extends TestCase {
 
+	/**
+	 * Die Applikation wird fuer 5 Sekunden gestartet und ist erfolgreich beendet, wenn keine Exception geworfen wird.
+	 * @throws Exception
+	 */
+	
     public void testEtlRoutes() throws Exception {
-        // let's boot up the Spring application context for 5 seconds to check that it works OK
         Main.main("-duration", "5s", "-o", "target/site/cameldoc");
     }
 }
