@@ -26,7 +26,8 @@ import static org.apache.camel.language.juel.JuelExpression.el;
  * wiederum im XML-File der Kunden abglegt werden.
  *
  * @author https://github.com/apache/camel/tree/master/examples/camel-example-etl
- * @author Erceg <serceg@student.tgm.ac.at>, Kritzl <mkritzl@student.tgm.ac.at> (Kommentare)
+ * @author Erceg (serceg@student.tgm.ac.at) (Kommentare)
+ * @author Kritzl (mkritzl@student.tgm.ac.at) (Kommentare)
  * @version 20150219
  */
 public class EtlRoutes extends SpringRouteBuilder {

@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Ein Datensatz eines Kunden, der in ein XML geschrieben oder ausgelesen werden kann
  *
  * @author https://github.com/apache/camel/tree/master/examples/camel-example-etl
- * @author Erceg <serceg@student.tgm.ac.at>, Kritzl <mkritzl@student.tgm.ac.at> (Kommentare)
+ * @author Erceg (serceg@student.tgm.ac.at) (Kommentare)
+ * @author Kritzl (mkritzl@student.tgm.ac.at) (Kommentare)
  * @version 20150219
  */
 

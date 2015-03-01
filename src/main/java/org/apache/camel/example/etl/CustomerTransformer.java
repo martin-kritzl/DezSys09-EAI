@@ -35,7 +35,8 @@ import org.springframework.transaction.support.TransactionTemplate;
  * Die Informationen zu einer Person werden einem neu angelegten oder bestehendem Kunden aus der Datenbank zugewiesen.
  *
  * @author https://github.com/apache/camel/tree/master/examples/camel-example-etl
- * @author Erceg <serceg@student.tgm.ac.at>, Kritzl <mkritzl@student.tgm.ac.at> (Kommentare)
+ * @author Erceg (serceg@student.tgm.ac.at) (Kommentare)
+ * @author Kritzl (mkritzl@student.tgm.ac.at) (Kommentare)
  * @version 20150219
  */
 @Converter
